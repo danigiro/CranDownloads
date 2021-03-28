@@ -27,7 +27,7 @@ fluidPage(
       wellPanel(HTML("Created using the <a href='https://github.com/metacran/cranlogs'>cranlogs</a> package",
                      "and starting from the shiny app described <a href='http://varianceexplained.org/r/cran-view/'>here</a>.",
                      "This app is not affiliated with RStudio or CRAN.",
-                     "You can find the code for the this app <a href='https://github.com/dgrtwo/cranview'>here</a>"))
+                     "You can find the code for the this app <a href='https://github.com/daniGiro/CranDownloads'>here</a>"))
     ),
     
     # Show a plot of the generated distribution
