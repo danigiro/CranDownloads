@@ -1,11 +1,9 @@
 library(shiny)
-library(httr)
-library(jsonlite)
+#library(jsonlite)
 library(shinythemes)
 library(plotly)
 
-# get the list of all packages on CRAN
-package_names = names(httr::content(httr::GET("http://crandb.r-pkg.org/-/desc")))
+
 
 fluidPage(
   theme = shinytheme("readable"),
@@ -16,11 +14,14 @@ fluidPage(
   sidebarLayout(
     sidebarPanel(style = "background: white",
                  wellPanel(HTML("Enter an (or multiple) R package(s) to see the number of downloads over time from the RStudio CRAN Mirror."),
+                           # selectizeInput("package", 
+                           #                label = "Packages:",
+                           #                selected = sample(package_names, 2),
+                           #                choices = package_names,
+                           #                multiple = TRUE),   
                            selectizeInput("package", 
                                           label = "Packages:",
-                                          selected = sample(package_names, 2),
-                                          choices = package_names,
-                                          multiple = TRUE),   
+                                          choices = NULL,multiple = TRUE),   
                            radioButtons("transformation", 
                                         "Data Transformation:",
                                         c("Daily" = "daily","Weekly" = "weekly", "Monthly" = "monthly", "Cumulative" = "cumulative"))),

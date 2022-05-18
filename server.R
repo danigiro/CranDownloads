@@ -8,6 +8,7 @@ library(zoo)
 library(scales)
 library(gridExtra)
 library(plotly)
+library(httr)
 
 ## Function to extract legend
 g_legend <- function(a.gplot){ 
@@ -18,6 +19,15 @@ g_legend <- function(a.gplot){
 } 
 
 shinyServer(function(input, output) {
+  # get the list of all packages on CRAN
+  package_names <- tools::CRAN_package_db()[, c("Package")]
+  
+  updateSelectizeInput(session = getDefaultReactiveDomain(), 
+                       'package', 
+                       selected = sample(package_names, 2),
+                       choices = package_names,
+                       server = TRUE)
+  
   downloads <- reactive({
     packages <- input$package
     date_list = structure(c(sapply(packages, function(x){
